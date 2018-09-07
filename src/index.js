@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 
-class ScrollableNav extends Component {
+class ScrollspyNav extends Component {
   constructor(props) {
     super(props);
 
     this.props = props;
-
     this.scrollSectionIds = this.props.scrollSectionIds;
+    this.activeLinkClassName = this.props.activeLinkClassName;
+
+    if(this.props.router && this.props.router === "HashRouter") {
+      this.homeDefaultLink = "#/";
+      this.hashIdentifier = "#/#";
+    } else {
+      this.homeDefaultLink = "/";
+      this.hashIdentifier = "#";
+    }
   }
 
   easeInOutQuad(current_time, start, change, duration) {
@@ -34,16 +42,26 @@ class ScrollableNav extends Component {
   }
 
   getNavLinkElement(sectionID) {
-    return document.querySelector(`a[href='#/${sectionID}']`);
+    return document.querySelector(`a[href='${this.hashIdentifier}${sectionID}']`);
+  }
+
+  getNavToSectionID(locationHash) {
+    return locationHash.includes(this.hashIdentifier) ? locationHash.replace(this.hashIdentifier, "") : "";
   }
 
   componentDidMount() {
+    document.querySelector(`a[href='${this.homeDefaultLink}']`).addEventListener("click", (event) => {
+      event.preventDefault();
+      this.scrollTo(window.pageYOffset, 0, 1200);
+      window.location.hash = "";
+    });
+
     window.onpopstate = (event) => {
       event.preventDefault();
-      let sectionID = event.target.location.hash.replace("#/", "");
+      let sectionID = this.getNavToSectionID(event.target.location.hash);
 
       if(sectionID) {
-        this.scrollTo(window.pageYOffset, document.getElementById(sectionID).offsetTop - document.getElementsByClassName("nav")[0].scrollHeight, 1200);
+        this.scrollTo(window.pageYOffset, document.getElementById(sectionID).offsetTop - document.querySelector("ul[data-nav='list']").scrollHeight, 1200);
       } else {
         this.scrollTo(window.pageYOffset, 0, 1200);
       }
@@ -52,17 +70,17 @@ class ScrollableNav extends Component {
     window.onscroll = (event) => {
       let scrollSectionOffsetTop;
       this.scrollSectionIds.map((sectionID, index) => {
-         scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - document.getElementsByClassName("nav")[0].scrollHeight;
+         scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - document.querySelector("ul[data-nav='list']").scrollHeight;
 
          if(window.pageYOffset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
-          this.getNavLinkElement(sectionID).classList.add("is-active");
+          this.getNavLinkElement(sectionID).classList.add(this.activeLinkClassName);
           this.clearOtherNavLinkActiveStyle(sectionID)
          } else {
-          this.getNavLinkElement(sectionID).classList.remove("is-active");
+          this.getNavLinkElement(sectionID).classList.remove(this.activeLinkClassName);
          }
 
          if(((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && (index === this.scrollSectionIds.length-1)) {
-          this.getNavLinkElement(sectionID).classList.add("is-active");
+          this.getNavLinkElement(sectionID).classList.add(this.activeLinkClassName);
           this.clearOtherNavLinkActiveStyle(sectionID);
          }
       });
@@ -72,18 +90,18 @@ class ScrollableNav extends Component {
   clearOtherNavLinkActiveStyle(excludeSectionID) {
     this.scrollSectionIds.map((sectionID, index) => {
       if (sectionID !== excludeSectionID) {
-        this.getNavLinkElement(sectionID).classList.remove("is-active");
+        this.getNavLinkElement(sectionID).classList.remove(this.activeLinkClassName);
       }
     });
   }
 
   render() {
     return(
-      <ul>
+      <ul data-nav="list">
         { this.props.children }
       </ul>
     );
   }
 }
 
-export default ScrollableNav;
+export default ScrollspyNav;
