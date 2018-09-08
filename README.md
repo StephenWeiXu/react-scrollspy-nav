@@ -2,6 +2,8 @@
 
 `react-scrollspy-nav` is a React component that provides smooth scrolling navigation to the page. It also acconuts for the factor that a React app may use different React router and therefore has different url patterns (for example the hash pathname in `HashRouter`).   
 
+See the [Demo](https://StephenWeiXu.github.io/react-scrollspy-nav-example).
+
 ##Installation
 `npm install --save react-scrollspy-nav`
 
