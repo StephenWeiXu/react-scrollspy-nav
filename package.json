@@ -15,12 +15,25 @@
     "start": "webpack --watch --mode development",
     "build": "webpack --mode production"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StephenWeiXu/react-scrollspy-nav"
+  },
   "author": "Wei Xu",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.2",
     "webpack-cli": "^3.1.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "component",
+    "scrollspy",
+    "scroll",
+    "scrollspy-nav",
+    "nav"
+  ]
 }
