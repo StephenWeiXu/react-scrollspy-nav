@@ -5,8 +5,8 @@ class ScrollspyNav extends Component {
     super(props);
 
     this.props = props;
-    this.scrollSectionIds = this.props.scrollSectionIds;
-    this.activeLinkClassName = this.props.activeLinkClassName;
+    this.scrollTargetIds = this.props.scrollTargetIds;
+    this.activeNavClass = this.props.activeNavClass;
 
     if(this.props.router && this.props.router === "HashRouter") {
       this.homeDefaultLink = "#/";
@@ -69,18 +69,18 @@ class ScrollspyNav extends Component {
 
     window.onscroll = (event) => {
       let scrollSectionOffsetTop;
-      this.scrollSectionIds.map((sectionID, index) => {
+      this.scrollTargetIds.map((sectionID, index) => {
          scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - document.querySelector("ul[data-nav='list']").scrollHeight;
 
          if(window.pageYOffset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
-          this.getNavLinkElement(sectionID).classList.add(this.activeLinkClassName);
+          this.getNavLinkElement(sectionID).classList.add(this.activeNavClass);
           this.clearOtherNavLinkActiveStyle(sectionID)
          } else {
-          this.getNavLinkElement(sectionID).classList.remove(this.activeLinkClassName);
+          this.getNavLinkElement(sectionID).classList.remove(this.activeNavClass);
          }
 
-         if(((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && (index === this.scrollSectionIds.length-1)) {
-          this.getNavLinkElement(sectionID).classList.add(this.activeLinkClassName);
+         if(((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && (index === this.scrollTargetIds.length-1)) {
+          this.getNavLinkElement(sectionID).classList.add(this.activeNavClass);
           this.clearOtherNavLinkActiveStyle(sectionID);
          }
       });
@@ -88,9 +88,9 @@ class ScrollspyNav extends Component {
   }
 
   clearOtherNavLinkActiveStyle(excludeSectionID) {
-    this.scrollSectionIds.map((sectionID, index) => {
+    this.scrollTargetIds.map((sectionID, index) => {
       if (sectionID !== excludeSectionID) {
-        this.getNavLinkElement(sectionID).classList.remove(this.activeLinkClassName);
+        this.getNavLinkElement(sectionID).classList.remove(this.activeNavClass);
       }
     });
   }
