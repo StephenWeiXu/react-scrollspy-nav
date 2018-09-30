@@ -7,6 +7,7 @@ class ScrollspyNav extends Component {
     this.props = props;
     this.scrollTargetIds = this.props.scrollTargetIds;
     this.activeNavClass = this.props.activeNavClass;
+    this.scrollDuration = Number(this.props.scrollDuration) || 1000;
 
     if(this.props.router && this.props.router === "HashRouter") {
       this.homeDefaultLink = "#/";
@@ -27,7 +28,7 @@ class ScrollspyNav extends Component {
   scrollTo(start, to, duration) {
     let change = to - start,
         currentTime = 0,
-        increment = 30;
+        increment = 10;
  
     let animateScroll = () => {        
         currentTime += increment;
@@ -45,27 +46,31 @@ class ScrollspyNav extends Component {
     return document.querySelector(`a[href='${this.hashIdentifier}${sectionID}']`);
   }
 
-  getNavToSectionID(locationHash) {
-    return locationHash.includes(this.hashIdentifier) ? locationHash.replace(this.hashIdentifier, "") : "";
+  getNavToSectionID(navHref) {
+    return navHref.includes(this.hashIdentifier) ? navHref.replace(this.hashIdentifier, "") : "";
   }
 
   componentDidMount() {
-    document.querySelector(`a[href='${this.homeDefaultLink}']`).addEventListener("click", (event) => {
-      event.preventDefault();
-      this.scrollTo(window.pageYOffset, 0, 1200);
-      window.location.hash = "";
-    });
-
-    window.onpopstate = (event) => {
-      event.preventDefault();
-      let sectionID = this.getNavToSectionID(event.target.location.hash);
-
-      if(sectionID) {
-        this.scrollTo(window.pageYOffset, document.getElementById(sectionID).offsetTop - document.querySelector("ul[data-nav='list']").scrollHeight, 1200);
-      } else {
-        this.scrollTo(window.pageYOffset, 0, 1200);
-      }
+    if (document.querySelector(`a[href='${this.homeDefaultLink}']`)) {
+      document.querySelector(`a[href='${this.homeDefaultLink}']`).addEventListener("click", (event) => {
+        event.preventDefault();
+        this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
+        window.location.hash = "";
+      });
     }
+
+    document.querySelector("ul[data-nav='list']").querySelectorAll("a").forEach( (navLink) => {
+      navLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        let sectionID = this.getNavToSectionID(navLink.getAttribute("href"));
+
+        if(sectionID) {
+          this.scrollTo(window.pageYOffset, document.getElementById(sectionID).offsetTop - document.querySelector("ul[data-nav='list']").scrollHeight, this.scrollDuration);
+        } else {
+          this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
+        }
+      });
+    })
 
     window.onscroll = (event) => {
       let scrollSectionOffsetTop;
