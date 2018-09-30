@@ -1,6 +1,6 @@
 {
   "name": "react-scrollspy-nav",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "react scrollspy nav component",
   "main": "build/index.js",
   "peerDependencies": {
