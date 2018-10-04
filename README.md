@@ -17,11 +17,13 @@ class App extends Component {
 		return (
 			<div>
 				<div>
-					<ScrollspyNav scrollTargetIds={["section_1", "section_2", "section_3"]} activeNavClass="is-active">
-					    <li><a href="/"><span>Home</span></a></li>
-					    <li><a href="#section_1"><span>Section 1</span></a></li>
-					    <li><a href="#section_2"><span>Section 2</span></a></li>
-					    <li><a href="#section_3"><span>Section 3</span></a></li>
+					<ScrollspyNav scrollTargetIds={["section_1", "section_2", "section_3"]} activeNavClass="is-active" scrollDuration="1000">
+						<ul>
+					    	<li><a href="/"><span>Home</span></a></li>
+					    	<li><a href="#section_1"><span>Section 1</span></a></li>
+					    	<li><a href="#section_2"><span>Section 2</span></a></li>
+					    	<li><a href="#section_3"><span>Section 3</span></a></li>
+				    	</ul>
 					</ScrollspyNav>
 				</div>
 				
@@ -54,5 +56,6 @@ Props that can be passed to Component `ScrollspyNav` for configuration.
 |------|------|------| ------ |
 | scrollTargetIds | Array | List of scroll targets ids | ["section_1", "section_2", "section_3"] |
 | activeNavClass | String | Class name for styling the nav link that's currently active | "is-active" |
+| scrollDuration | String | Scroll duration for controlling how fast the nav click scrolls to its section. Default is "1000" | "1000" |
 | router | String | The name of router used in react app if any | "HashRouter" |
 

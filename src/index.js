@@ -59,13 +59,13 @@ class ScrollspyNav extends Component {
       });
     }
 
-    document.querySelector("ul[data-nav='list']").querySelectorAll("a").forEach( (navLink) => {
+    document.querySelector("div[data-nav='list']").querySelectorAll("a").forEach( (navLink) => {
       navLink.addEventListener("click", (event) => {
         event.preventDefault();
         let sectionID = this.getNavToSectionID(navLink.getAttribute("href"));
 
         if(sectionID) {
-          this.scrollTo(window.pageYOffset, document.getElementById(sectionID).offsetTop - document.querySelector("ul[data-nav='list']").scrollHeight, this.scrollDuration);
+          this.scrollTo(window.pageYOffset, document.getElementById(sectionID).offsetTop - document.querySelector("div[data-nav='list']").scrollHeight, this.scrollDuration);
         } else {
           this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
         }
@@ -75,7 +75,7 @@ class ScrollspyNav extends Component {
     window.onscroll = (event) => {
       let scrollSectionOffsetTop;
       this.scrollTargetIds.map((sectionID, index) => {
-         scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - document.querySelector("ul[data-nav='list']").scrollHeight;
+         scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - document.querySelector("div[data-nav='list']").scrollHeight;
 
          if(window.pageYOffset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
           this.getNavLinkElement(sectionID).classList.add(this.activeNavClass);
@@ -102,9 +102,9 @@ class ScrollspyNav extends Component {
 
   render() {
     return(
-      <ul data-nav="list">
+      <div data-nav="list">
         { this.props.children }
-      </ul>
+      </div>
     );
   }
 }
