@@ -75,19 +75,19 @@ class ScrollspyNav extends Component {
     window.onscroll = (event) => {
       let scrollSectionOffsetTop;
       this.scrollTargetIds.map((sectionID, index) => {
-         scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - document.querySelector("div[data-nav='list']").scrollHeight;
+        scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - document.querySelector("div[data-nav='list']").scrollHeight;
 
-         if(window.pageYOffset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
+        if (window.pageYOffset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
           this.getNavLinkElement(sectionID).classList.add(this.activeNavClass);
           this.clearOtherNavLinkActiveStyle(sectionID)
-         } else {
+        } else {
           this.getNavLinkElement(sectionID).classList.remove(this.activeNavClass);
-         }
+        }
 
-         if(((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && (index === this.scrollTargetIds.length-1)) {
+        if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight && index === this.scrollTargetIds.length - 1) {
           this.getNavLinkElement(sectionID).classList.add(this.activeNavClass);
           this.clearOtherNavLinkActiveStyle(sectionID);
-         }
+        }
       });
     }
   }
