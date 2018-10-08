@@ -8,6 +8,7 @@ class ScrollspyNav extends Component {
     this.scrollTargetIds = this.props.scrollTargetIds;
     this.activeNavClass = this.props.activeNavClass;
     this.scrollDuration = Number(this.props.scrollDuration) || 1000;
+    this.headerBackground = this.props.headerBackground === "true" ? true : false;
 
     if(this.props.router && this.props.router === "HashRouter") {
       this.homeDefaultLink = "#/";
@@ -65,17 +66,18 @@ class ScrollspyNav extends Component {
         let sectionID = this.getNavToSectionID(navLink.getAttribute("href"));
 
         if(sectionID) {
-          this.scrollTo(window.pageYOffset, document.getElementById(sectionID).offsetTop - document.querySelector("div[data-nav='list']").scrollHeight, this.scrollDuration);
+          let scrollTargetPosition = document.getElementById(sectionID).offsetTop - (this.headerBackground ? document.querySelector("div[data-nav='list']").scrollHeight : 0);
+          this.scrollTo(window.pageYOffset, scrollTargetPosition, this.scrollDuration);
         } else {
           this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
         }
       });
     })
 
-    window.onscroll = (event) => {
+    window.addEventListener("scroll", () => {
       let scrollSectionOffsetTop;
       this.scrollTargetIds.map((sectionID, index) => {
-        scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - document.querySelector("div[data-nav='list']").scrollHeight;
+        scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - (this.headerBackground ? document.querySelector("div[data-nav='list']").scrollHeight : 0);
 
         if (window.pageYOffset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
           this.getNavLinkElement(sectionID).classList.add(this.activeNavClass);
@@ -89,7 +91,7 @@ class ScrollspyNav extends Component {
           this.clearOtherNavLinkActiveStyle(sectionID);
         }
       });
-    }
+    });
   }
 
   clearOtherNavLinkActiveStyle(excludeSectionID) {
