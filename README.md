@@ -1,6 +1,6 @@
 # react-scrollspy-nav
 
-`react-scrollspy-nav` is a React component that provides smooth scrolling navigation to the page. It also acconuts for the factor that a React app may use different React router and therefore has different url patterns (for example the hash pathname in `HashRouter`).   
+`react-scrollspy-nav` is a React component that provides smooth scrolling navigation to the page. It also accounts for the factor that a React app may use different React router and therefore has different url patterns (for example the hash pathname in `HashRouter`).   
 
 See the [Demo](https://StephenWeiXu.github.io/react-scrollspy-nav-example).
 
@@ -13,38 +13,37 @@ import React, { Component } from "react";
 import ScrollspyNav from "react-scrollspy-nav";
 
 class App extends Component {
-	render() {
-		return (
-			<div>
-				<div>
-					<ScrollspyNav
-						scrollTargetIds={["section_1", "section_2", "section_3"]}
-						activeNavClass="is-active"
-						scrollDuration="1000"
-						headerBackground="true"
-					>
-						<ul>
-					    	<li><a href="/"><span>Home</span></a></li>
-					    	<li><a href="#section_1"><span>Section 1</span></a></li>
-					    	<li><a href="#section_2"><span>Section 2</span></a></li>
-					    	<li><a href="#section_3"><span>Section 3</span></a></li>
-				    	</ul>
-					</ScrollspyNav>
-				</div>
-				
-				<div>
-					<div style={{"height": "400px"}}><span>Welcome!</span></div>
-					<div id="section_1" style={{"height": "500px"}}><span>Section 1</span></div>
-					<div id="section_2" style={{"height": "500px"}}><span>Section 2</span></div>
-					<div id="section_3" style={{"height": "500px"}}><span>Section 3</span></div>
-				</div>
-			</div>
-		);
-	}
+    render() {
+        return (
+            <div>
+                <div>
+                    <ScrollspyNav
+                        scrollTargetIds={["section_1", "section_2", "section_3"]}
+                        activeNavClass="is-active"
+                        scrollDuration="1000"
+                        headerBackground="true"
+                    >
+                        <ul>
+                            <li><a href="/"><span>Home</span></a></li>
+                            <li><a href="#section_1"><span>Section 1</span></a></li>
+                            <li><a href="#section_2"><span>Section 2</span></a></li>
+                            <li><a href="#section_3"><span>Section 3</span></a></li>
+                        </ul>
+                    </ScrollspyNav>
+                </div>
+                
+                <div>
+                    <div style={{"height": "400px"}}><span>Welcome!</span></div>
+                    <div id="section_1" style={{"height": "500px"}}><span>Section 1</span></div>
+                    <div id="section_2" style={{"height": "500px"}}><span>Section 2</span></div>
+                    <div id="section_3" style={{"height": "500px"}}><span>Section 3</span></div>
+                </div>
+            </div>
+        );
+    }
 }
 
-export default App;	
-		
+export default App;
 ```
 
 **Notes**
