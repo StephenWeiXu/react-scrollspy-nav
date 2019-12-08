@@ -1,6 +1,6 @@
 {
   "name": "react-scrollspy-nav",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "react scrollspy nav component",
   "main": "build/index.js",
   "peerDependencies": {
@@ -29,7 +29,8 @@
     "webpack-cli": "^3.1.0",
     "mem": ">=4.0.0",
     "set-value": ">=2.0.1",
-    "serialize-javascript": ">=2.1.1"
+    "serialize-javascript": ">=2.1.1",
+    "tar": ">=2.2.2"
   },
   "keywords": [
     "react",
