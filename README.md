@@ -60,7 +60,7 @@ Props that can be passed to Component `ScrollspyNav` for configuration.
 | Name | Type | Description | Example Value |
 |------|------|------| ------ |
 | scrollTargetIds | Array | List of scroll targets ids | ["section_1", "section_2", "section_3"] |
-| offset | String | offset pixels to the scrollTargetIds | "100" |
+| offset | Number | offset pixels to the scrollTargetIds. Default is 0 | 100 |
 | activeNavClass | String | Class name for styling the nav link that's currently active | "is-active" |
 | scrollDuration | String | Scroll duration for controlling how fast the nav click scrolls to its section. Default is "1000" | "1000" |
 | headerBackground | String | If header has background color or not, for accurate scroll position, Default is "false" | "true" |
