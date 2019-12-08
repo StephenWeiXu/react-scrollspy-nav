@@ -9,7 +9,7 @@ class ScrollspyNav extends Component {
     this.activeNavClass = this.props.activeNavClass;
     this.scrollDuration = Number(this.props.scrollDuration) || 1000;
     this.headerBackground = this.props.headerBackground === "true" ? true : false;
-    this.offset = this.props.offset;
+    this.offset = Number(this.props.offset) || 0;
 
     if(this.props.router && this.props.router === "HashRouter") {
       this.homeDefaultLink = "#/";
