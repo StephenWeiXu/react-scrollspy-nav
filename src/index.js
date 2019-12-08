@@ -27,6 +27,12 @@ class ScrollspyNav extends Component {
       return -change/2 * (current_time*(current_time-2) - 1) + start;
   };
 
+  /**
+   * Perform scroll animation with given start place, end place and duration
+   * @param {Number} start
+   * @param {Number} to
+   * @param {Number} duration
+   */
   scrollTo(start, to, duration) {
     let change = to - start,
         currentTime = 0,
@@ -44,12 +50,32 @@ class ScrollspyNav extends Component {
     animateScroll();
   }
 
+  /**
+   * Get the nav link element with a given sectionID that the nav link links to
+   * @param {String} sectionID
+   */
   getNavLinkElement(sectionID) {
     return document.querySelector(`a[href='${this.hashIdentifier}${sectionID}']`);
   }
 
+  /**
+   * Given a nav href url, get its clean sectionID based on if there is hash router identifier or not
+   * @param {String} navHref
+   */
   getNavToSectionID(navHref) {
     return navHref.includes(this.hashIdentifier) ? navHref.replace(this.hashIdentifier, "") : "";
+  }
+
+  /**
+   * Clear the highlight style on the non-current viewed nav elements
+   * @param {String} excludeSectionID 
+   */
+  clearOtherNavLinkActiveStyle(excludeSectionID) {
+    this.scrollTargetIds.map((sectionID, index) => {
+      if (sectionID !== excludeSectionID) {
+        this.getNavLinkElement(sectionID).classList.remove(this.activeNavClass);
+      }
+    });
   }
 
   componentDidMount() {
@@ -92,14 +118,6 @@ class ScrollspyNav extends Component {
           this.clearOtherNavLinkActiveStyle(sectionID);
         }
       });
-    });
-  }
-
-  clearOtherNavLinkActiveStyle(excludeSectionID) {
-    this.scrollTargetIds.map((sectionID, index) => {
-      if (sectionID !== excludeSectionID) {
-        this.getNavLinkElement(sectionID).classList.remove(this.activeNavClass);
-      }
     });
   }
 
