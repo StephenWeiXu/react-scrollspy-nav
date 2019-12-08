@@ -19,7 +19,7 @@ class App extends Component {
                 <div>
                     <ScrollspyNav
                         scrollTargetIds={["section_1", "section_2", "section_3"]}
-                        offset="100"
+                        offset={100}
                         activeNavClass="is-active"
                         scrollDuration="1000"
                         headerBackground="true"
