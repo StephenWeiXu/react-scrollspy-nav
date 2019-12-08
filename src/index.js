@@ -9,6 +9,7 @@ class ScrollspyNav extends Component {
     this.activeNavClass = this.props.activeNavClass;
     this.scrollDuration = Number(this.props.scrollDuration) || 1000;
     this.headerBackground = this.props.headerBackground === "true" ? true : false;
+    this.offset = this.props.offset;
 
     if(this.props.router && this.props.router === "HashRouter") {
       this.homeDefaultLink = "#/";
@@ -30,8 +31,8 @@ class ScrollspyNav extends Component {
     let change = to - start,
         currentTime = 0,
         increment = 10;
- 
-    let animateScroll = () => {        
+
+    let animateScroll = () => {
         currentTime += increment;
         let val = this.easeInOutQuad(currentTime, start, change, duration);
         window.scrollTo(0, val);
@@ -67,7 +68,7 @@ class ScrollspyNav extends Component {
 
         if(sectionID) {
           let scrollTargetPosition = document.getElementById(sectionID).offsetTop - (this.headerBackground ? document.querySelector("div[data-nav='list']").scrollHeight : 0);
-          this.scrollTo(window.pageYOffset, scrollTargetPosition, this.scrollDuration);
+          this.scrollTo(window.pageYOffset, scrollTargetPosition + this.offset, this.scrollDuration);
         } else {
           this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
         }
