@@ -5,7 +5,7 @@
 See the [Demo](https://StephenWeiXu.github.io/react-scrollspy-nav-example).
 
 ## Installation
-`npm -i react-scrollspy-nav`
+`npm install react-scrollspy-nav`
 
 ## Usage
 ```
