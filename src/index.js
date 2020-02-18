@@ -100,8 +100,8 @@ class ScrollspyNav extends Component {
   }
 
   componentDidMount() {
-    if (document.querySelector(`a[href='${this.homeDefaultLink}']`)) {
-      document.querySelector(`a[href='${this.homeDefaultLink}']`).addEventListener("click", (event) => {
+    if (document.querySelector(`a[href='${this.homeDefaultLink}#']`)) {
+      document.querySelector(`a[href='${this.homeDefaultLink}#']`).addEventListener("click", (event) => {
         event.preventDefault();
         this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
         window.location.hash = "";
