@@ -16,22 +16,20 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <ScrollspyNav
-                        scrollTargetIds={["section_1", "section_2", "section_3"]}
-                        offset={100}
-                        activeNavClass="is-active"
-                        scrollDuration="1000"
-                        headerBackground="true"
-                    >
-                        <ul>
-                            <li><a href="/"><span>Home</span></a></li>
-                            <li><a href="#section_1"><span>Section 1</span></a></li>
-                            <li><a href="#section_2"><span>Section 2</span></a></li>
-                            <li><a href="#section_3"><span>Section 3</span></a></li>
-                        </ul>
-                    </ScrollspyNav>
-                </div>
+                <ScrollspyNav
+                    scrollTargetIds={["section_1", "section_2", "section_3"]}
+                    offset={100}
+                    activeNavClass="is-active"
+                    scrollDuration="1000"
+                    headerBackground="true"
+                >
+                    <ul>
+                        <li><a href="/"><span>Home</span></a></li>
+                        <li><a href="#section_1"><span>Section 1</span></a></li>
+                        <li><a href="#section_2"><span>Section 2</span></a></li>
+                        <li><a href="#section_3"><span>Section 3</span></a></li>
+                    </ul>
+                </ScrollspyNav>
                 
                 <div>
                     <div style={{"height": "400px"}}><span>Welcome!</span></div>
@@ -60,7 +58,7 @@ Props that can be passed to Component `ScrollspyNav` for configuration.
 | Name | Type | Description | Example Value |
 |------|------|------| ------ |
 | scrollTargetIds | Array | List of scroll targets ids | ["section_1", "section_2", "section_3"] |
-| offset | Number | offset pixels to the scrollTargetIds. Default is 0 | 100 |
+| offset | Number | Offset pixels to the scrollTargetIds. Default is 0 | 100 |
 | activeNavClass | String | Class name for styling the nav link that's currently active | "is-active" |
 | scrollDuration | String | Scroll duration for controlling how fast the nav click scrolls to its section. Default is "1000" | "1000" |
 | headerBackground | String | If header has background color or not, for accurate scroll position, Default is "false" | "true" |
