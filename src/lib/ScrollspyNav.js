@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+const SCROLLSPY_NAV_NAMESPACE = "react-scrollspy-nav";
+
 
 class ScrollspyNav extends Component {
   constructor(props) {
@@ -24,7 +26,12 @@ class ScrollspyNav extends Component {
 
   onScroll() {
     let scrollSectionOffsetTop;
-    this.scrollTargetIds.map((sectionID, index) => {
+    this.scrollTargetIds.forEach((sectionID, index) => {
+      if (!document.getElementById(sectionID)) {
+        console.warn(`${SCROLLSPY_NAV_NAMESPACE}: no element with id ${sectionID} present in the DOM`);
+        return;
+      }
+
       scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - (this.headerBackground ? document.querySelector("div[data-nav='list']").scrollHeight : 0);
   
       if (window.pageYOffset - this.offset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
@@ -114,8 +121,12 @@ class ScrollspyNav extends Component {
         let sectionID = this.getNavToSectionID(navLink.getAttribute("href"));
 
         if(sectionID) {
-          let scrollTargetPosition = document.getElementById(sectionID).offsetTop - (this.headerBackground ? document.querySelector("div[data-nav='list']").scrollHeight : 0);
-          this.scrollTo(window.pageYOffset, scrollTargetPosition + this.offset, this.scrollDuration);
+          if (document.getElementById(sectionID)) {
+            let scrollTargetPosition = document.getElementById(sectionID).offsetTop - (this.headerBackground ? document.querySelector("div[data-nav='list']").scrollHeight : 0);
+            this.scrollTo(window.pageYOffset, scrollTargetPosition + this.offset, this.scrollDuration);
+          } else {
+            console.warn(`${SCROLLSPY_NAV_NAMESPACE}: no element with id ${sectionID} present in the DOM`);
+          }
         } else {
           this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
         }

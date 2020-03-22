@@ -18,7 +18,12 @@ class App extends Component {
     return(
         // <div>
         //   <div className="nav">
-        //     <ScrollspyNav scrollTargetIds={["section_1", "section_2", "section_3"]} activeNavClass="is-active" scrollDuration="1000" headerBackground="true">
+        //     <ScrollspyNav
+        //       scrollTargetIds={["section_1", "section_2", "section_3"]}
+        //       activeNavClass="is-active"
+        //       scrollDuration="1000"
+        //       headerBackground="true"
+        //     >
         //         <ul>
         //           <li><a href="/"><span>Home</span></a></li>
         //           <li><a href="#section_1"><span>Usage</span></a></li>
@@ -40,7 +45,13 @@ class App extends Component {
         <HashRouter>
           <div>
             <div className="nav">
-              <ScrollspyNav scrollTargetIds={["section_1", "section_2", "section_3"]} activeNavClass="is-active" router="HashRouter">
+              <ScrollspyNav
+                scrollTargetIds={["section_1", "section_2", "section_3"]}
+                activeNavClass="is-active"
+                scrollDuration="1000"
+                headerBackground="true"
+                router="HashRouter"
+              >
                 <ul>
                   <li><NavLink to="/"><span>Home</span></NavLink></li>
                   <li><NavLink to="#section_1"><span>Usage</span></NavLink></li>
