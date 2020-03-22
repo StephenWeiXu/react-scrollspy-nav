@@ -11,10 +11,10 @@ class App extends Component {
           activeNavClass="is-active"
         >
           <ul>
-            <li><a href="/"><span>Home</span></a></li>
-            <li><a href="#section_1"><span>Section 1</span></a></li>
-            <li><a href="#section_2"><span>Section 2</span></a></li>
-            <li><a href="#section_3"><span>Section 3</span></a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#section_1">Section 1</a></li>
+            <li><a href="#section_2">Section 2</a></li>
+            <li><a href="#section_3">Section 3</a></li>
           </ul>
         </ScrollspyNav>
 
