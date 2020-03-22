@@ -5,7 +5,7 @@ class Usage extends Component {
 		return (
 			<div className="section-content">
 				<h2>Installation</h2>
-				<p className="code-block">npm install --save react-scrollspy-nav</p>
+				<p className="code-block">npm i react-scrollspy-nav --save</p>
 			</div>
 		);
 	}
