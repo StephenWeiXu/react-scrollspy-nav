@@ -1,11 +1,11 @@
 # react-scrollspy-nav
 
-`react-scrollspy-nav` is a React component that provides smooth scrolling navigation to the page. It also accounts for the factor that a React app may use different React router and therefore has different url patterns (for example the hash pathname in `HashRouter`).   
+`react-scrollspy-nav` is a React component that provides smooth scrolling navigation to a web page. It also accounts for the factor that a React app may use different React router and therefore has different url patterns (for example the hash pathname in `HashRouter`).   
 
 See the [Demo](https://stephenweixu.github.io/react-scrollspy-nav).
 
 ## Installation
-`npm install react-scrollspy-nav`
+`npm i react-scrollspy-nav --save`
 
 ## Usage
 ```
@@ -45,10 +45,10 @@ class App extends Component {
 export default App;
 ```
 
-**Notes**
+**Note:**
 
-* The above code provides the skeleton for it to work. You need to style the nav and the target sections yourself to achieve better effect
-* `style={{"height": "500px"}}` here is only an example to put more height for each section `div` to make the page scrollable
+* The above code provides the skeleton for it to work. You need to style the nav and the target sections yourself to have better visual effect.
+* `style={{"height": "500px"}}` on the section `div` here is only an example to put more height for each section `div` to make the page scrollable. Adjust it according to your needs.
 
 
 ## Props
@@ -57,10 +57,30 @@ Props that can be passed to Component `ScrollspyNav` for configuration.
 
 | Name | Type | Description | Example Value |
 |------|------|------| ------ |
-| scrollTargetIds | Array | List of scroll targets ids | ["section_1", "section_2", "section_3"] |
+| scrollTargetIds | Array | List of scroll target ids | ["section_1", "section_2", "section_3"] |
 | offset | Number | Offset pixels to the scrollTargetIds. Default is 0 | 100 |
 | activeNavClass | String | Class name for styling the nav link that's currently active | "is-active" |
 | scrollDuration | String | Scroll duration for controlling how fast the nav click scrolls to its section. Default is "1000" | "1000" |
 | headerBackground | String | If header has background color or not, for accurate scroll position, Default is "false" | "true" |
 | router | String | The name of router used in react app if any | "HashRouter" |
+
+
+## Local Development
+
+```
+$ git clone git@github.com:StephenWeiXu/react-scrollspy-nav.git
+$ cd react-scrollspy-nav
+$ npm install
+$ npm run start
+```
+#### ScrollspyNav
+The `ScrollspyNav` component is located at `src/lib/ScrollspyNav.js`. If you are thinking of contributing, that's likely the file you would want to udpate.
+
+#### Example App
+Open up `http://localhost:3001` to see the example app. The example app is rendered from `src/index.js`. It's a quick way to visually test out `react-scrollspy-nav` if you make any changes.
+
+## Contributing
+Feel free to [open an issue](https://github.com/StephenWeiXu/react-scrollspy-nav/issues/new), or create your pull request!
+
+If this is your first time contributing to a github project, checkout a quick guide on [making you first contributions](https://github.com/firstcontributions/first-contributions).
 
