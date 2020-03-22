@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 const SCROLLSPY_NAV_NAMESPACE = "react-scrollspy-nav";
 
 
+/**
+ * ScrollspyNav component. Refer to below for the props it receives
+ */
 class ScrollspyNav extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +27,10 @@ class ScrollspyNav extends Component {
     }
   }
 
+  /**
+   * Scroll event handler. It checks the current window offset and compares it with the pageYOffset of each
+   *  target sections. It highlights the nav link when scrolling to a corresponding section
+   */
   onScroll() {
     let scrollSectionOffsetTop;
     this.scrollTargetIds.forEach((sectionID, index) => {

@@ -8,10 +8,10 @@ class Example extends Component {
 		this.state = {content: ""};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		fetch(`./markdown/example.md`)
 			.then(response => response.text())
-			.then(text => this.setState({content:text}))
+			.then(text => this.setState({content: text}))
 	}
 
 	buildExampleCode() {

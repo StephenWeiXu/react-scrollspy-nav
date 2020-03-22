@@ -53,19 +53,19 @@ class App extends Component {
                 router="HashRouter"
               >
                 <ul>
-                  <li><NavLink to="/"><span>Home</span></NavLink></li>
-                  <li><NavLink to="#section_1"><span>Usage</span></NavLink></li>
-                  <li><NavLink to="#section_2"><span>Example</span></NavLink></li>
-                  <li><NavLink to="#section_3"><span>Configuration</span></NavLink></li>
+                  <li><NavLink to="/">Home</NavLink></li>
+                  <li><NavLink to="#section_1">Usage</NavLink></li>
+                  <li><NavLink to="#section_2">Example</NavLink></li>
+                  <li><NavLink to="#section_3">Configuration</NavLink></li>
                 </ul>
               </ScrollspyNav>
             </div>
 
             <div className="content">
-                <div id="header"><span><About /></span></div>
-                <div id="section_1"><span><Usage /></span></div>
-                <div id="section_2"><span><Example /></span></div>
-                <div id="section_3"><span><Configuration /></span></div>
+                <div id="header"><About /></div>
+                <div id="section_1"><Usage /></div>
+                <div id="section_2"><Example /></div>
+                <div id="section_3"><Configuration /></div>
             </div>
           </div>
         </HashRouter>

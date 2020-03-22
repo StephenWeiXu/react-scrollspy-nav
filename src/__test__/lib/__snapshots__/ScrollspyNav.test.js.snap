@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScrollspyNav tests creates the correct snapshot 1`] = `
+<div
+  data-nav="list"
+>
+  <ul>
+    <li>
+      <a
+        href="#section_1"
+      >
+        Section 1
+      </a>
+    </li>
+  </ul>
+</div>
+`;
