@@ -1,11 +1,20 @@
 # react-scrollspy-nav
 
+[![npm version](https://img.shields.io/npm/v/react-scrollspy-nav.svg?style=flat-square)](https://www.npmjs.com/package/react-scrollspy-nav)
+[![travis](https://travis-ci.com/StephenWeiXu/react-scrollspy-nav.svg?branch=master)](https://travis-ci.com/github/StephenWeiXu/react-scrollspy-nav)
+[![dependencies](http://img.shields.io/david/StephenWeiXu/react-scrollspy-nav.svg?style=flat-square)](https://github.com/StephenWeiXu/react-scrollspy-nav)
+[![DevDependencies](http://img.shields.io/david/dev/StephenWeiXu/react-scrollspy-nav.svg?style=flat-square)](https://github.com/StephenWeiXu/react-scrollspy-nav)
+[![License](http://img.shields.io/npm/l/react-scrollspy-nav.svg?style=flat-square)](https://github.com/StephenWeiXu/react-scrollspy-nav)
+[![downloads](https://img.shields.io/npm/dm/react-scrollspy-nav.svg?style=flat-square)](https://www.npmjs.com/package/react-scrollspy-nav)
+
 `react-scrollspy-nav` is a React component that provides smooth scrolling navigation to a web page. It also accounts for the factor that a React app may use different React router and therefore has different url patterns (for example the hash pathname in `HashRouter`).   
 
 See the [Demo](https://stephenweixu.github.io/react-scrollspy-nav).
 
 ## Installation
-`npm i react-scrollspy-nav --save`
+```
+npm i react-scrollspy-nav --save
+```
 
 ## Usage
 ```
