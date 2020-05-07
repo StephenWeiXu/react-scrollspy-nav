@@ -15,6 +15,7 @@ class ScrollspyNav extends Component {
     this.scrollDuration = Number(this.props.scrollDuration) || 1000;
     this.headerBackground = this.props.headerBackground === "true" ? true : false;
     this.offset = this.props.offset || 0;
+    this.scrollDestination = 0;
 
     this.onScroll = this.onScroll.bind(this);
 
@@ -69,11 +70,20 @@ class ScrollspyNav extends Component {
    * @param {Number} duration
    */
   scrollTo(start, to, duration) {
+    this.scrollDestination = to;
     let change = to - start,
         currentTime = 0,
         increment = 10;
 
     let animateScroll = () => {
+        /*
+         * Stop previous animation when destination changes
+         *
+         * https://github.com/StephenWeiXu/react-scrollspy-nav/issues/28
+         */
+        if (this.scrollDestination !== to)
+            return;
+      
         currentTime += increment;
         let val = this.easeInOutQuad(currentTime, start, change, duration);
         window.scrollTo(0, val);
@@ -140,6 +150,7 @@ class ScrollspyNav extends Component {
       });
     })
 
+    this.onScroll();
     window.addEventListener("scroll", this.onScroll);
   }
 
