@@ -2,3 +2,4 @@
 build/
 dist/
 .python-version
+.DS_Store
