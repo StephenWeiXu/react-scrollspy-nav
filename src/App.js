@@ -49,7 +49,6 @@ class App extends Component {
                 scrollTargetIds={["section_1", "section_2", "section_3"]}
                 activeNavClass="is-active"
                 scrollDuration="1000"
-                headerBackground="true"
                 router="HashRouter"
               >
                 <ul>

@@ -86,7 +86,7 @@ $ npm run start
 The `ScrollspyNav` component is located at `src/lib/ScrollspyNav.js`. If you are thinking of contributing, that's likely the file you would want to udpate.
 
 #### Example App
-Open up `http://localhost:3001` to see the example app. The example app is rendered from `src/index.js`. It's a quick way to visually test out `react-scrollspy-nav` if you make any changes.
+Open up `http://localhost:3000` to see the example app. The example app is rendered from `src/index.js`. It's a quick way to visually test out `react-scrollspy-nav` if you make any changes.
 
 ## Contributing
 Feel free to [open an issue](https://github.com/StephenWeiXu/react-scrollspy-nav/issues/new), or create your pull request!
