@@ -140,6 +140,13 @@ class ScrollspyNav extends Component {
       });
     })
 
+
+    /*
+     * Trigger classname if element is in viewport on component mount
+     *
+     * https://github.com/StephenWeiXu/react-scrollspy-nav/issues/27
+     */
+    this.onScroll();
     window.addEventListener("scroll", this.onScroll);
   }
 
