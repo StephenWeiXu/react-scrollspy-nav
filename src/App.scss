@@ -51,18 +51,14 @@ body {
     background: #f7f7f7;
   }
 
-  @mixin section() {
-    height: 500px;
-  }
-
   #section_1 {
-    @include section;
+    height: 500px;
 
     background: white;
   }
 
   #section_2 {
-    @include section;
+    height: 500px;
 
     background: aliceblue;
     height: 700px;
@@ -73,7 +69,7 @@ body {
   }
 
   #section_3 {
-    @include section;
+    height: 500px;
 
     table {
       border-collapse: collapse;

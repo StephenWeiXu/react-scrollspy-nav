@@ -1,32 +1,16 @@
 const path = require('path'),
-    WebpackShellPlugin = require("webpack-shell-plugin"),
+    webpack = require('webpack'),
+    WebpackShellPluginNext = require("webpack-shell-plugin-next"),
     HtmlWebpackPlugin = require("html-webpack-plugin"),
     htmlWebpackPlugin = new HtmlWebpackPlugin({
         template: path.join(__dirname, "src/index.html"),
         filename: "index.html"
-    }),
-    ExtractTextPlugin = require("extract-text-webpack-plugin"),
-    extractSass = new ExtractTextPlugin({
-        filename: "style.css"
-    }),
-    UglifyJsPlugin = require("uglifyjs-webpack-plugin"),
-    OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-
+    })
 
 module.exports = {
-    optimization: {
-      minimizer: [
-          new UglifyJsPlugin({
-              cache: true,
-              parallel: true,
-          }),
-          new OptimizeCSSAssetsPlugin({})
-      ]
-    },
     entry: {
         app: [
-            path.join(__dirname, "./src/index.js"),
-            path.join(__dirname, "./src/scss/app.scss")
+            path.join(__dirname, "./src/index.js")
         ],
         ScrollspyNav: [
             path.join(__dirname, "./src/lib/ScrollspyNav.js")
@@ -35,9 +19,10 @@ module.exports = {
     output: {
        path: path.join(__dirname, "dist"),
        filename: "[name].js",
-       libraryTarget: 'umd'
+       libraryTarget: 'umd',
+       globalObject: 'this'
     },
-    devtool: process.env.NODE_ENV === "production" ? "#hidden-source-map" : "#inline-source-map",
+    devtool: "hidden-source-map",
     module: {
         rules: [
             {
@@ -49,24 +34,8 @@ module.exports = {
                 exclude: /(node_modules)/,
             },
             {
-                test: /\.s?css$/,
-                use: extractSass.extract({
-                    use: [{
-                        loader: "css-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    }, {
-                        loader: "sass-loader",
-                        options: {
-                            sourceMap: true,
-                            sassOptions: {
-                                outputStyle: 'compressed',
-                            },
-                        }
-                    }],
-                    fallback: "style-loader"
-                })
+                test: /\.s[ac]ss$/i,
+                use: ["style-loader", "css-loader", "sass-loader"],
             },
             {
                 test: /\.md$/,
@@ -76,14 +45,18 @@ module.exports = {
         ]
     },
     plugins: [
-        extractSass,
         htmlWebpackPlugin,
-        new WebpackShellPlugin({
-            onBuildStart:[
-                "echo \033[1;33mMoving files into dist/\033[0m",
-                "mkdir -p dist",
-                "cp -R markdown dist/"
-            ]
+        new webpack.ProvidePlugin({
+             process: 'process/browser',
+        }),
+        new WebpackShellPluginNext({
+            onBuildStart:{
+                scripts: [
+                    "echo Moving files into dist folder",
+                    "mkdir -p dist",
+                    "cp -R markdown dist/"
+                ]
+            }
         })
     ],
     resolve: {
@@ -92,10 +65,14 @@ module.exports = {
             'node_modules',
             path.join(__dirname, 'src'),
         ],
+        fallback: {
+            "path": false
+        }
     },
     devServer: {
-        contentBase: './dist',
-        publicPath: '/',
+        static: {
+          directory: path.join(__dirname, 'dist'),
+        },
         compress: true,
         port: 3000
     }
