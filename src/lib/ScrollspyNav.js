@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-const SCROLLSPY_NAV_NAMESPACE = "react-scrollspy-nav";
 
+
+const isBrowser = typeof window !== "undefined";
+const SCROLLSPY_NAV_NAMESPACE = "react-scrollspy-nav";
 
 /**
  * ScrollspyNav component. Refer to below for the props it receives
@@ -41,14 +43,14 @@ class ScrollspyNav extends Component {
 
       scrollSectionOffsetTop = document.getElementById(sectionID).offsetTop - (this.headerBackground ? document.querySelector("div[data-nav='list']").scrollHeight : 0);
   
-      if (window.pageYOffset - this.offset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
+      if (isBrowser && window.pageYOffset - this.offset >= scrollSectionOffsetTop && window.pageYOffset < scrollSectionOffsetTop + document.getElementById(sectionID).scrollHeight) {
         this.getNavLinkElement(sectionID).classList.add(this.activeNavClass);
         this.clearOtherNavLinkActiveStyle(sectionID)
       } else {
         this.getNavLinkElement(sectionID).classList.remove(this.activeNavClass);
       }
   
-      if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight && index === this.scrollTargetIds.length - 1) {
+      if (isBrowser && window.innerHeight + window.pageYOffset >= document.body.scrollHeight && index === this.scrollTargetIds.length - 1) {
         this.getNavLinkElement(sectionID).classList.add(this.activeNavClass);
         this.clearOtherNavLinkActiveStyle(sectionID);
       }
@@ -76,7 +78,7 @@ class ScrollspyNav extends Component {
     let animateScroll = () => {
         currentTime += increment;
         let val = this.easeInOutQuad(currentTime, start, change, duration);
-        window.scrollTo(0, val);
+        isBrowser && window.scrollTo(0, val);
         if(currentTime < duration) {
             setTimeout(animateScroll, increment);
         }
@@ -117,8 +119,10 @@ class ScrollspyNav extends Component {
     if (document.querySelector(`a[href='${this.homeDefaultLink}#']`)) {
       document.querySelector(`a[href='${this.homeDefaultLink}#']`).addEventListener("click", (event) => {
         event.preventDefault();
-        this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
-        window.location.hash = "";
+        isBrowser && this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
+        if (isBrowser) {
+          window.location.hash = "";
+        }
       });
     }
 
@@ -130,21 +134,21 @@ class ScrollspyNav extends Component {
         if(sectionID) {
           if (document.getElementById(sectionID)) {
             let scrollTargetPosition = document.getElementById(sectionID).offsetTop - (this.headerBackground ? document.querySelector("div[data-nav='list']").scrollHeight : 0);
-            this.scrollTo(window.pageYOffset, scrollTargetPosition + this.offset, this.scrollDuration);
+            isBrowser && this.scrollTo(window.pageYOffset, scrollTargetPosition + this.offset, this.scrollDuration);
           } else {
             console.warn(`${SCROLLSPY_NAV_NAMESPACE}: no element with id ${sectionID} present in the DOM`);
           }
         } else {
-          this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
+          isBrowser && this.scrollTo(window.pageYOffset, 0, this.scrollDuration);
         }
       });
     })
 
-    window.addEventListener("scroll", this.onScroll);
+    isBrowser && window.addEventListener("scroll", this.onScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.onScroll);
+    isBrowser && window.removeEventListener("scroll", this.onScroll);
   }
 
   render() {
