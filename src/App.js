@@ -6,6 +6,7 @@ import Usage from "./components/Usage";
 import Example from "./components/Example";
 import Configuration from "./components/Configuration";
 
+import "./App.scss";
 
 class App extends Component {
   constructor(props) {
